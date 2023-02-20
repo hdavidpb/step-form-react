@@ -379,9 +379,9 @@ export const AddOnDetailContainer = styled.div`
     width: 16px;
     height: 16px;
 
-    /* :checked {
+    :checked {
       accent-color: ${theme.primary.marineBlue};
-    } */
+    }
   }
 `;
 export const AddonDescription = styled.div`
