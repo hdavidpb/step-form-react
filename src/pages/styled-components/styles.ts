@@ -60,6 +60,7 @@ export const SideStepContainer = styled.div`
     background: url(${({ responsiveBg }: ISidevarELement) => responsiveBg})
       no-repeat center;
     background-size: 100%;
+    background-position: inherit;
   }
 `;
 
