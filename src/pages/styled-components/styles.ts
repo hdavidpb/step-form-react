@@ -57,8 +57,9 @@ export const SideStepContainer = styled.div`
     align-items: flex-start;
     justify-content: center;
     border-radius: 0;
-    /* background: url(${({ responsiveBg }: ISidevarELement) => responsiveBg})
-      no-repeat center; */
+    background: url(${({ responsiveBg }: ISidevarELement) => responsiveBg})
+      no-repeat center;
+    background-size: 100%;
   }
 `;
 
