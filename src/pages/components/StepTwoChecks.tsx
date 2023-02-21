@@ -17,7 +17,6 @@ export const StepTwoChecks = () => {
           <PlanCard plan={plan} key={plan.title} />
         ))}
       </SC.CardsContainer>
-      <CheckBox />
     </SC.FieldsContainer>
   );
 };

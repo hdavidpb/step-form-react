@@ -15,9 +15,9 @@ import {
 
 const steps: Step[] = [
   {
-    caption: "YOUR INFO",
-    title: "Personal info",
-    description: "Please provide your name, email address and phone number",
+    caption: "SELECCIONA TU ORDEN",
+    title: "Prodcutos",
+    description: "Por favor realiza tu ordén",
     isCompleted: false,
   },
   {
@@ -59,7 +59,7 @@ export const initialState: IInitialState = {
     plans: [
       {
         title: "Arcade",
-        isSelected: true,
+        isSelected: false,
         monthlyPlan: 9,
         yearlyPlan: 90,
       },
@@ -156,8 +156,8 @@ export const stepReducer = (
     case SELECT_OR_UNSELECT_PLAN:
       const newPlans = state.stepTwoFormValues.plans.map((plan) =>
         plan.title === action.payload
-          ? { ...plan, isSelected: true }
-          : { ...plan, isSelected: false }
+          ? { ...plan, isSelected: !plan.isSelected }
+          : { ...plan }
       );
       const selectedPlans = newPlans.filter((plan) => plan.isSelected);
 

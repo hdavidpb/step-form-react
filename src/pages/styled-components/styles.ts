@@ -130,12 +130,14 @@ export const FormLayout = styled.div`
   align-items: ${({ isFinished }: FormLayoutProps) =>
     isFinished ? "center" : "flex-start"};
   gap: 2rem;
-  padding: 30px 50px;
+  padding: 30px 40px;
+
   @media (max-width: 600px) {
+    height: 75%;
     flex: 0;
-    height: auto;
+
     position: absolute;
-    width: 88%;
+    width: 98%;
     padding: 20px 10px;
     background-color: ${theme.neutral.white};
     border-radius: 10px;
@@ -169,6 +171,7 @@ export const FieldsContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
   gap: 20px;
+  overflow-y: auto;
 `;
 
 export const FieldContainer = styled.div`
@@ -209,10 +212,12 @@ export const CardsContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   gap: 10px;
-
+  padding: 0 5px;
   @media (max-width: 600px) {
-    flex-direction: column;
+    /* flex-direction: column;
+    flex-wrap: wrap; */
   }
 `;
 
@@ -226,46 +231,41 @@ export const PlanCard = styled.div`
   height: 160px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: flex-start;
   border: solid 2px
     ${({ isSelected }: PlanCardProps) =>
       isSelected ? theme.primary.marineBlue : theme.neutral.lightGray};
   border-radius: 10px;
-  padding: 10px;
+
   cursor: pointer;
   transition: all 0.4s;
 
-  :hover {
-    border-color: ${theme.primary.marineBlue};
-  }
-
   @media (max-width: 600px) {
-    width: 100%;
     height: auto;
-    flex-direction: row;
+
     gap: 10px;
   }
 `;
 
-export const Icon = styled.i`
-  position: absolute;
-  top: 10px;
-  left: 10px;
-
+export const Image = styled.img`
+  width: 100%;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 10px 0;
   @media (max-width: 600px) {
     position: static;
   }
 `;
 
-export const CardFooter = styled.div`
+export const CardDescription = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   gap: 2px;
-
+  padding: 10px;
   h4 {
     color: ${theme.primary.marineBlue};
   }
@@ -275,6 +275,8 @@ export const CardFooter = styled.div`
     color: ${theme.neutral.coolGray};
   }
 `;
+
+export const CardFooter = styled.div``;
 
 export const CheckContainer = styled.div`
   width: 100%;

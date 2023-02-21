@@ -20,17 +20,18 @@ export const PlanCard = ({ plan }: Props) => {
       key={title}
       onClick={() => dispatch(selectOrUnselectPlan(title))}
     >
-      <SC.Icon>
-        <GenerateIcon iconName={title} />
-      </SC.Icon>
-      <SC.CardFooter>
+      <SC.Image
+        src="https://www.pequerecetas.com/wp-content/uploads/2013/07/hamburguesas-caseras-receta.jpg"
+        alt="gemela"
+      />
+      <SC.CardDescription>
         <h4>{title}</h4>
         <span>{`${
           planType === PlanType.monthly
             ? `$${monthlyPlan}/mo`
             : `$${yearlyPlan}/yr`
         }`}</span>
-      </SC.CardFooter>
+      </SC.CardDescription>
     </SC.PlanCard>
   );
 };

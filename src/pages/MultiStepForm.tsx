@@ -31,8 +31,8 @@ export const MultiStepForm = () => {
                 <h1>{steps[index].title}</h1>
                 <p>{steps[index].description}</p>
               </SC.HeaderText>
-              {index === 0 && <StepOneForm />}
-              {index === 1 && <StepTwoChecks />}
+              {index === 0 && <StepTwoChecks />}
+              {index === 1 && <StepOneForm />}
               {index === 2 && <StepTreeForm />}
               {index === 3 && <StepFourForm />}
               <FooterOptions />
