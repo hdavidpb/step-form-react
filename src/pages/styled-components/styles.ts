@@ -273,6 +273,7 @@ export const CardDescription = styled.div`
   span {
     font-size: 14px;
     color: ${theme.neutral.coolGray};
+    //nothing
   }
 `;
 
