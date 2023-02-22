@@ -10,6 +10,7 @@ export const LoadingBurguer = () => {
         height: "200px",
         margin: "auto",
         gridColumn: "1/4",
+        objectFit: "cover",
       }}
     />
   );

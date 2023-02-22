@@ -7,6 +7,7 @@ import {
 import { stepsContext } from "../../context/StepsProvider";
 
 import * as SC from "../styled-components/styles";
+import { parsePrice } from "../../utils/parsePrice";
 
 interface Props {
   product: Product;
@@ -29,7 +30,7 @@ export const ProductCard = ({ product }: Props) => {
       <SC.Image src={imagen} alt="gemela" />
       <SC.CardDescription>
         <h4>{nombre}</h4>
-        <span>{`$ ${precio}`}</span>
+        <span>{parsePrice(precio)}</span>
       </SC.CardDescription>
       <SC.CardFooter>
         <button

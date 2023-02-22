@@ -12,11 +12,19 @@ import {
   IS_VALID,
   NEXT_STEP,
   SELECT_PRODUCT,
+  GO_TO_STEP,
 } from "./types";
 import { Product } from "../interfaces";
 import { FECTH_SUCCESS } from "./types";
 
-export const nextStep = () => ({ type: NEXT_STEP, payload: 1 });
+export const nextStep = (step: number = 1) => ({
+  type: NEXT_STEP,
+  payload: step,
+});
+export const goToStep = (step: number) => ({
+  type: GO_TO_STEP,
+  payload: step,
+});
 export const goBack = () => ({ type: GO_BACK, payload: -1 });
 
 export const changeStepOneValue = (name: string, value: string) => ({

@@ -29,7 +29,7 @@ export const FooterOptions = () => {
         style={{ opacity: index === 0 ? 0 : 1 }}
         onClick={() => dispatch(goBack())}
       >
-        Go Back
+        Atrás
       </span>
 
       <Button disabled={!steps[index].isCompleted} onClick={handleClick}>

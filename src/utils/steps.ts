@@ -5,18 +5,18 @@ export const steps: Step[] = [
     caption: "SELECCIONA TU ORDEN",
     title: "Prodcutos",
     description: "Por favor realiza tu ordén",
-    isCompleted: true,
+    isCompleted: false,
   },
   {
     caption: "REGISTRA TUS DATOS",
     title: "REGISTRA LOS DATOS DE ENTREGA",
     description: "Datos",
-    isCompleted: true,
+    isCompleted: false,
   },
   {
     caption: "FINALIZA TU ORDÉN",
     title: "Revisa Y finaliza tu ordén",
-    description: "Revisa que todo este bien",
+    description: "Verifica que todo este en ordén",
     isCompleted: true,
   },
 

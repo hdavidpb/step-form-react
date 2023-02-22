@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { generateWappText } from "../context/stepReducer/actions";
 import { stepsContext } from "../context/StepsProvider";
-import { formatPrice } from "../utils/formatPrice";
+import { parsePrice } from "../utils/parsePrice";
 
 const useGetDetailsInfo = () => {
   const { state, dispatch } = useContext(stepsContext);
@@ -17,7 +17,7 @@ const useGetDetailsInfo = () => {
     );
 
     setFinishingTotal({
-      total: formatPrice(totalOrder),
+      total: parsePrice(totalOrder),
     });
   };
 

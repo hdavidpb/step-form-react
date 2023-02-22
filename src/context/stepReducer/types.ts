@@ -10,3 +10,4 @@ export const IS_VALID = "IS_VALID";
 export const NEXT_STEP = "NEXT_STEP";
 export const SELECT_PRODUCT = "SELECT_PRODUCT";
 export const FECTH_SUCCESS = "FECTH_SUCCESS";
+export const GO_TO_STEP = "GO_TO_STEP";

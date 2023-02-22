@@ -21,18 +21,20 @@ export const StepOneCheckProducts = () => {
   useValidateSelectedProducts();
 
   useEffect(() => {
-    fetch(import.meta.env.VITE_API)
-      .then((response) => {
-        dispatch(fetchLoading());
-        return response.json();
-      })
-      .then((data) => {
-        const products = createProductsAdapter(data);
+    if (stepOneProducts.products.length === 0) {
+      fetch(import.meta.env.VITE_API)
+        .then((response) => {
+          dispatch(fetchLoading());
+          return response.json();
+        })
+        .then((data) => {
+          const products = createProductsAdapter(data);
 
-        dispatch(getProductsData(products));
-        dispatch(fetchSuccess());
-      });
-  }, []);
+          dispatch(getProductsData(products));
+          dispatch(fetchSuccess());
+        });
+    }
+  }, [stepOneProducts.products]);
 
   return (
     <SC.FieldsContainer>

@@ -8,6 +8,7 @@ import {
   GET_PRODUCTS_DATA,
   INCREASE_BY,
   FECTH_SUCCESS,
+  GO_TO_STEP,
 } from "./types";
 
 import {
@@ -62,6 +63,10 @@ export const stepReducer = (
 
         index: state.index > 0 ? state.index + action.payload : 0,
       };
+
+    case GO_TO_STEP:
+      return { ...state, index: action.payload };
+
     case CHANGE_STEP_ONE_FORM_VALUE:
       return {
         ...state,

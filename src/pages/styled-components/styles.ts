@@ -76,6 +76,7 @@ export const StepContainer = styled.div`
   gap: 10px;
 
   p {
+    cursor: pointer;
     width: 30px;
     height: 30px;
     border: solid 1px ${theme.neutral.white};
@@ -243,9 +244,11 @@ export const ProductCard = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  border: solid 2px
-    ${({ isSelected }: ProductCardProps) =>
-      isSelected ? theme.primary.marineBlue : theme.neutral.lightGray};
+  box-shadow: ${({ isSelected }: ProductCardProps) =>
+    isSelected
+      ? `${theme.primary.marineBlue} 0px 2px 8px 0px`
+      : `${theme.neutral.lightGray} 0px 2px 8px 0px`};
+
   border-radius: 10px;
 
   cursor: pointer;
@@ -501,6 +504,7 @@ export const FinishingDetailCard = styled.div`
     font-size: 1rem;
     background-color: transparent;
     color: ${theme.primary.marineBlue};
+    cursor: pointer;
   }
 `;
 
@@ -541,13 +545,13 @@ export const TotalContainer = styled.div`
   align-items: center;
   padding: 1rem;
   span {
-    font-size: 15px;
     color: ${theme.neutral.coolGray};
     font-size: 1.6rem;
+    font-weight: 900;
   }
 
   h3 {
-    color: ${theme.primary.purplishBlue};
+    color: ${theme.primary.marineBlue};
     font-size: 1.6rem;
   }
 `;

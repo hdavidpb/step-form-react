@@ -2,7 +2,7 @@ import { useContext } from "react";
 
 import { editProductOrder } from "../../context/stepReducer/actions";
 import { stepsContext } from "../../context/StepsProvider";
-import { formatPrice } from "../../utils/formatPrice";
+import { parsePrice } from "../../utils/parsePrice";
 import * as SC from "../styled-components/styles";
 
 export const PlanFinishinDetail = () => {
@@ -16,7 +16,7 @@ export const PlanFinishinDetail = () => {
         <SC.OrderDescriptionContainer key={plan.nombre}>
           <h3>{plan.count}</h3>
           <p>{plan.nombre}</p>
-          <h3>{formatPrice(plan.precio * plan.count)}</h3>
+          <h3>{parsePrice(plan.precio * plan.count)}</h3>
         </SC.OrderDescriptionContainer>
       ))}
       <button onClick={() => dispatch(editProductOrder())}>Editar ordén</button>
