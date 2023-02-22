@@ -1,5 +1,3 @@
-import { ContentData } from "../../interfaces/interfaces";
-import { createProductsAdapter } from "../../adapters/adapters";
 import {
   FECTH_LOADING,
   CHANGE_PRODUCTS_ORDER,
@@ -13,9 +11,12 @@ import {
   NEXT_STEP,
   SELECT_PRODUCT,
   GO_TO_STEP,
+  UNSELECT_PRODUCT,
+  SELECT_CATEGORY,
+  FILTER_BY_CATEGORY_TYPE,
+  FECTH_SUCCESS,
 } from "./types";
 import { Product } from "../interfaces";
-import { FECTH_SUCCESS } from "./types";
 
 export const nextStep = (step: number = 1) => ({
   type: NEXT_STEP,
@@ -54,6 +55,10 @@ export const selectOrUnselectProduct = (productTitle: string) => ({
   type: SELECT_PRODUCT,
   payload: productTitle,
 });
+export const unSelectProduct = (productTitle: string) => ({
+  type: UNSELECT_PRODUCT,
+  payload: productTitle,
+});
 
 export const increaseBy = (productName: string, increaseNumber: number) => {
   return {
@@ -88,4 +93,13 @@ export const fetchLoading = () => ({
 export const fetchSuccess = () => ({
   type: FECTH_SUCCESS,
   payload: false,
+});
+
+export const selectCategory = (categoryName: string) => ({
+  type: SELECT_CATEGORY,
+  payload: categoryName,
+});
+export const filterByCategorytype = (categoryName: string) => ({
+  type: FILTER_BY_CATEGORY_TYPE,
+  payload: categoryName,
 });

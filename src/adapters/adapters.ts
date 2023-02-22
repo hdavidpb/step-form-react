@@ -1,5 +1,5 @@
 import { Product } from "../context/interfaces";
-import { ContentData } from "../interfaces/interfaces";
+import { ContentData, IDataProducts } from "../interfaces/interfaces";
 
 export const createProductsAdapter = (data: ContentData): Product[] => {
   const [headers, ...products] = data.content;

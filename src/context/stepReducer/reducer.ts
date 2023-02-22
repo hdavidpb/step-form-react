@@ -1,5 +1,5 @@
 import { steps } from "../../utils/steps";
-import { Action, IInitialState, Step } from "../interfaces";
+import { Action, Category, IInitialState, Product } from "../interfaces";
 
 import {
   FECTH_LOADING,
@@ -9,15 +9,15 @@ import {
   INCREASE_BY,
   FECTH_SUCCESS,
   GO_TO_STEP,
-} from "./types";
-
-import {
+  UNSELECT_PRODUCT,
+  SELECT_CATEGORY,
   CHANGE_STEP_ONE_FORM_VALUE,
   GO_BACK,
   IS_INVALID,
   IS_VALID,
   NEXT_STEP,
   SELECT_PRODUCT,
+  FILTER_BY_CATEGORY_TYPE,
 } from "./types";
 
 export const initialState: IInitialState = {
@@ -31,9 +31,10 @@ export const initialState: IInitialState = {
 
   stepOneProducts: {
     products: [],
+    filteredProducts: [],
+    categories: [],
   },
   loadingProducts: false,
-  addOnsSelected: [],
   productSelected: [],
   wappText: "",
 };
@@ -44,9 +45,24 @@ export const stepReducer = (
 ): IInitialState => {
   switch (action.type) {
     case GET_PRODUCTS_DATA:
+      const categories: Category[] = action.payload.map((product: Product) => ({
+        type: product.tipo,
+        isSelected: false,
+      }));
+
+      let hash: any = {};
+      const filterCategories = categories.filter((category) =>
+        hash[category.type] ? false : (hash[category.type] = true)
+      );
+
       return {
         ...state,
-        stepOneProducts: { ...state.stepOneProducts, products: action.payload },
+        stepOneProducts: {
+          ...state.stepOneProducts,
+          products: action.payload,
+          filteredProducts: action.payload,
+          categories: filterCategories,
+        },
       };
 
     case NEXT_STEP:
@@ -93,20 +109,53 @@ export const stepReducer = (
       return { ...state, steps: stepsWithFalse };
 
     case SELECT_PRODUCT:
-      const newProducts = state.stepOneProducts.products.map((product) =>
-        product.nombre === action.payload
-          ? { ...product, isSelected: true }
-          : { ...product }
+      const newProducts = state.stepOneProducts.filteredProducts.map(
+        (product) =>
+          product.nombre === action.payload
+            ? { ...product, isSelected: true }
+            : { ...product }
       );
-      const selectedPlans = newProducts.filter((product) => product.isSelected);
+      const newSelectedProducts = state.stepOneProducts.products.map(
+        (product) =>
+          product.nombre === action.payload
+            ? { ...product, isSelected: true }
+            : { ...product }
+      );
+      const selectedProducts = newSelectedProducts.filter(
+        (product) => product.isSelected
+      );
 
       return {
         ...state,
         stepOneProducts: {
           ...state.stepOneProducts,
-          products: newProducts,
+          products: newSelectedProducts,
+          filteredProducts: newProducts,
         },
-        productSelected: selectedPlans,
+        productSelected: selectedProducts,
+      };
+
+    case UNSELECT_PRODUCT:
+      const prods = state.stepOneProducts.filteredProducts.map((product) =>
+        product.nombre === action.payload
+          ? { ...product, isSelected: false }
+          : { ...product }
+      );
+      const newProdSel = state.stepOneProducts.products.map((product) =>
+        product.nombre === action.payload
+          ? { ...product, isSelected: false }
+          : { ...product }
+      );
+
+      const selected = newProdSel.filter((product) => product.isSelected);
+      return {
+        ...state,
+        stepOneProducts: {
+          ...state.stepOneProducts,
+          products: newProdSel,
+          filteredProducts: prods,
+        },
+        productSelected: selected,
       };
 
     case INCREASE_BY:
@@ -119,12 +168,24 @@ export const stepReducer = (
         }
         return product;
       });
+      const filterProd = state.stepOneProducts.filteredProducts.map(
+        (product) => {
+          if (product.nombre === action.payload.productName) {
+            return {
+              ...product,
+              count: product.count + action.payload.increaseNumber,
+            };
+          }
+          return product;
+        }
+      );
 
       return {
         ...state,
         stepOneProducts: {
           ...state.stepOneProducts,
           products: newProductsby,
+          filteredProducts: filterProd,
         },
       };
 
@@ -139,6 +200,32 @@ export const stepReducer = (
       return { ...state, loadingProducts: action.payload };
     case FECTH_SUCCESS:
       return { ...state, loadingProducts: action.payload };
+
+    case SELECT_CATEGORY:
+      const newCategories = state.stepOneProducts.categories.map((category) =>
+        category.type === action.payload
+          ? { ...category, isSelected: !category.isSelected }
+          : { ...category, isSelected: false }
+      );
+      return {
+        ...state,
+        stepOneProducts: {
+          ...state.stepOneProducts,
+          categories: newCategories,
+        },
+      };
+    case FILTER_BY_CATEGORY_TYPE:
+      const newProds = state.stepOneProducts.products.filter((prod) =>
+        prod.tipo.includes(action.payload)
+      );
+
+      return {
+        ...state,
+        stepOneProducts: {
+          ...state.stepOneProducts,
+          filteredProducts: newProds,
+        },
+      };
     default:
       return { ...state };
   }

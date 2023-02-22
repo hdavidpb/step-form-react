@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { theme } from "../../theme/theme";
 
 export const MainLayout = styled.div`
@@ -11,7 +11,7 @@ export const StepFormContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin: auto;
-  width: 800px;
+  width: 950px;
   height: 600px;
   box-shadow: 0 5px 5px 10px #00000014;
   border-radius: 10px;
@@ -130,11 +130,11 @@ export const FormLayout = styled.div`
     isFinished ? "center" : "flex-start"};
   align-items: ${({ isFinished }: FormLayoutProps) =>
     isFinished ? "center" : "flex-start"};
-  gap: 2rem;
+  gap: 1rem;
   padding: 30px 40px;
 
   @media (max-width: 600px) {
-    height: 75%;
+    height: 85%;
     flex: 0;
 
     position: absolute;
@@ -142,7 +142,7 @@ export const FormLayout = styled.div`
     padding: 20px 10px;
     background-color: ${theme.neutral.white};
     border-radius: 10px;
-    top: 17%;
+    top: 10%;
     box-shadow: 0 5px 5px 3px #00000014;
   }
 `;
@@ -161,6 +161,39 @@ export const HeaderText = styled.div`
   p {
     font-size: 16px;
     color: ${theme.neutral.coolGray};
+  }
+`;
+
+export const FiltersTabContainer = styled.ul`
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 9px;
+  overflow-x: auto;
+  padding: 7px;
+`;
+
+interface CategoryProps {
+  isSelected: boolean;
+}
+
+export const Li = styled.li`
+  text-align: center;
+  font-size: 13px;
+  padding: 8px;
+  border-radius: 16px;
+  box-shadow: 0 1px 2px 2px ${theme.neutral.lightGray};
+  list-style: none;
+  color: ${theme.primary.marineBlue};
+  background-color: ${({ isSelected }: CategoryProps) =>
+    isSelected ? theme.primary.marineBlue : "#FFFFFF"};
+  color: ${({ isSelected }: CategoryProps) =>
+    isSelected ? "#FFFFFF" : theme.primary.marineBlue};
+  cursor: pointer;
+  transition: all 0.4s;
+  :hover {
+    transform: scale(1.1);
   }
 `;
 
@@ -235,6 +268,20 @@ interface ProductCardProps {
   isSelected: boolean;
 }
 
+const animateCardFadeIn = keyframes`
+  0% { 
+  transform:scale(0)
+
+}
+
+
+  100% { 
+  
+    transform:scale(1.1)
+  }
+
+`;
+
 export const ProductCard = styled.div`
   position: relative;
   flex-grow: 1;
@@ -247,14 +294,30 @@ export const ProductCard = styled.div`
     isSelected
       ? `${theme.primary.marineBlue} 0px 2px 8px 0px`
       : `${theme.neutral.lightGray} 0px 2px 8px 0px`};
-
   border-radius: 10px;
-
   cursor: pointer;
   transition: all 0.4s;
-
+  animation: ${animateCardFadeIn} 0.4s ease-in-out;
   @media (max-width: 600px) {
     gap: 10px;
+  }
+`;
+
+export const SelectedCount = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 70px;
+  top: 0;
+  border-radius: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: hsl(213deg 96% 18% / 53%);
+  border-radius: 10px 10px 0 0;
+  h1 {
+    color: ${theme.neutral.white};
+    font-size: 60px;
+    font-style: oblique;
   }
 `;
 

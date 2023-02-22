@@ -40,7 +40,7 @@ export const StepOneCheckProducts = () => {
     <SC.FieldsContainer>
       <SC.CardsContainer>
         {!loadingProducts && stepOneProducts.products.length !== 0 ? (
-          stepOneProducts.products.map((product) => (
+          stepOneProducts.filteredProducts.map((product) => (
             <ProductCard product={product} key={product.nombre} />
           ))
         ) : (

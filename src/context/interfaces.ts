@@ -6,11 +6,12 @@ export interface IInitialState {
   stepOneformValues: StepOneForm;
 
   stepOneProducts: {
+    categories: Category[];
     products: Product[];
+    filteredProducts: Product[];
   };
   loadingProducts: boolean;
   productSelected: Product[];
-  addOnsSelected: AddOns[];
   wappText: string;
 }
 
@@ -29,9 +30,9 @@ export interface Product {
   count: number;
 }
 
-export enum PlanType {
-  monthly = "Monthly",
-  yearly = "Yearly",
+export interface Category {
+  type: string;
+  isSelected: boolean;
 }
 
 export interface Step {
@@ -50,17 +51,3 @@ export type StepsContextType = {
   state: IInitialState;
   dispatch: Dispatch<Action>;
 };
-
-export enum IconName {
-  arcade = "Arcade",
-  advanced = "Advanced",
-  pro = "Pro",
-}
-
-export interface AddOns {
-  title: string;
-  description: string;
-  isSelected: boolean;
-  monthlyPlan: number;
-  yearlyPlan: number;
-}

@@ -1,7 +1,5 @@
 import { useContext } from "react";
-
 import { stepsContext } from "../context/StepsProvider";
-
 import SideSteps from "./components/SideSteps";
 
 import {
@@ -10,6 +8,7 @@ import {
   StepOneCheckProducts,
   FinishingOrder,
   ThankYouStep,
+  FilterSection,
 } from "./components";
 
 import * as SC from "./styled-components/styles";
@@ -29,6 +28,7 @@ export const MultiStepForm = () => {
               <SC.HeaderText>
                 <h3>{steps[index].title}</h3>
                 <p>{steps[index].description}</p>
+                {index === 0 && <FilterSection />}
               </SC.HeaderText>
               {index === 0 && <StepOneCheckProducts />}
               {index === 1 && <StepOneForm />}

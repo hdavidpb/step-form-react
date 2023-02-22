@@ -10,11 +10,12 @@ body {
 
 ::-webkit-scrollbar {
   width: 4px;
+  height: 3px;
 }
 ::-webkit-scrollbar-thumb {
   background-color: hsl(213, 96%, 18%);
   border-radius: 20px;
 }
 ::-webkit-scrollbar-track {
-  background-color: hsl(231, 11%, 63%);
+  background-color: hsl(231deg 11% 63% / 24%);
 }
