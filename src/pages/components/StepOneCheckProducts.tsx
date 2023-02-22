@@ -3,7 +3,6 @@ import { stepsContext } from "../../context/StepsProvider";
 
 import * as SC from "../styled-components/styles";
 
-import CheckBox from "./CheckBox";
 import { ProductCard } from "./index";
 
 export const StepOneCheckProducts = () => {

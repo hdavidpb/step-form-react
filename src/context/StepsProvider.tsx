@@ -1,5 +1,5 @@
-import { createContext, Dispatch, useContext, useReducer } from "react";
-import { StepOneForm } from "../pages/components/StepOneForm";
+import { createContext, useReducer } from "react";
+
 import { StepsContextType } from "./interfaces";
 import { initialState, stepReducer } from "./stepReducer/reducer";
 
