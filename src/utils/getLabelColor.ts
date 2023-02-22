@@ -1,4 +1,3 @@
-import { PlanType as PlanType } from "../context/interfaces";
 import { theme } from "../theme/theme";
 
 export const getLabelColor = (contition: boolean) => {
