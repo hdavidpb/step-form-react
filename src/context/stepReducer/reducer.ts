@@ -2,10 +2,12 @@ import { steps } from "../../utils/steps";
 import { Action, IInitialState, Step } from "../interfaces";
 
 import {
+  FECTH_LOADING,
   CHANGE_PRODUCTS_ORDER,
   GENERATE_WAPP_TEXT,
   GET_PRODUCTS_DATA,
   INCREASE_BY,
+  FECTH_SUCCESS,
 } from "./types";
 
 import {
@@ -29,7 +31,7 @@ export const initialState: IInitialState = {
   stepOneProducts: {
     products: [],
   },
-
+  loadingProducts: false,
   addOnsSelected: [],
   productSelected: [],
   wappText: "",
@@ -120,6 +122,7 @@ export const stepReducer = (
           products: newProductsby,
         },
       };
+
     case CHANGE_PRODUCTS_ORDER:
       return { ...state, index: action.payload };
     case GENERATE_WAPP_TEXT:
@@ -127,7 +130,10 @@ export const stepReducer = (
         ...state,
         wappText: action.payload,
       };
-
+    case FECTH_LOADING:
+      return { ...state, loadingProducts: action.payload };
+    case FECTH_SUCCESS:
+      return { ...state, loadingProducts: action.payload };
     default:
       return { ...state };
   }

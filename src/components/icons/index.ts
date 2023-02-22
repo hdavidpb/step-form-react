@@ -1,3 +1,5 @@
+export { LoadingBurguer } from "../gif/LoadingBurguer";
+
 export { CheckIcon } from "./CheckIcon";
 export { Advanced } from "./Advanced";
 export { Arcade } from "./Arcade";

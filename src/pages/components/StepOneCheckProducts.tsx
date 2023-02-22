@@ -1,33 +1,49 @@
 import { useContext, useEffect } from "react";
 import { stepsContext } from "../../context/StepsProvider";
+
+import { createProductsAdapter } from "../../adapters/adapters";
+
+import {
+  fetchLoading,
+  fetchSuccess,
+  getProductsData,
+} from "../../context/stepReducer/actions";
 import useValidateSelectedProducts from "../../hooks/useValidateSelectedProducts";
+
+import { ProductCard } from "./index";
+import { LoadingBurguer } from "../../components/icons";
 
 import * as SC from "../styled-components/styles";
 
-import { ProductCard } from "./index";
-import { createProductsAdapter } from "../../adapters/adapters";
-import { getProductsData } from "../../context/stepReducer/actions";
-
 export const StepOneCheckProducts = () => {
   const { state, dispatch } = useContext(stepsContext);
-  const { stepOneProducts } = state;
+  const { stepOneProducts, loadingProducts } = state;
   useValidateSelectedProducts();
 
   useEffect(() => {
     fetch(import.meta.env.VITE_API)
-      .then((response) => response.json())
+      .then((response) => {
+        dispatch(fetchLoading());
+        return response.json();
+      })
       .then((data) => {
         const products = createProductsAdapter(data);
+
         dispatch(getProductsData(products));
+        dispatch(fetchSuccess());
       });
   }, []);
 
   return (
     <SC.FieldsContainer>
       <SC.CardsContainer>
-        {stepOneProducts.products.map((product) => (
-          <ProductCard product={product} key={product.nombre} />
-        ))}
+        {!loadingProducts && stepOneProducts.products.length !== 0 ? (
+          stepOneProducts.products.map((product) => (
+            <ProductCard product={product} key={product.nombre} />
+          ))
+        ) : (
+          <LoadingBurguer />
+        )}
       </SC.CardsContainer>
     </SC.FieldsContainer>
   );

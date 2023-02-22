@@ -8,7 +8,7 @@ export interface IInitialState {
   stepOneProducts: {
     products: Product[];
   };
-
+  loadingProducts: boolean;
   productSelected: Product[];
   addOnsSelected: AddOns[];
   wappText: string;

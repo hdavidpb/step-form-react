@@ -1,6 +1,7 @@
 import { ContentData } from "../../interfaces/interfaces";
 import { createProductsAdapter } from "../../adapters/adapters";
 import {
+  FECTH_LOADING,
   CHANGE_PRODUCTS_ORDER,
   CHANGE_STEP_ONE_FORM_VALUE,
   GENERATE_WAPP_TEXT,
@@ -13,6 +14,7 @@ import {
   SELECT_PRODUCT,
 } from "./types";
 import { Product } from "../interfaces";
+import { FECTH_SUCCESS } from "./types";
 
 export const nextStep = () => ({ type: NEXT_STEP, payload: 1 });
 export const goBack = () => ({ type: GO_BACK, payload: -1 });
@@ -68,4 +70,14 @@ export const generateWappText = (text: string) => ({
 export const getProductsData = (data: Product[]) => ({
   type: GET_PRODUCTS_DATA,
   payload: data,
+});
+
+export const fetchLoading = () => ({
+  type: FECTH_LOADING,
+  payload: true,
+});
+
+export const fetchSuccess = () => ({
+  type: FECTH_SUCCESS,
+  payload: false,
 });
