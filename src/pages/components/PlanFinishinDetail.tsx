@@ -19,7 +19,7 @@ export const PlanFinishinDetail = () => {
           <h3>{parsePrice(plan.precio * plan.count)}</h3>
         </SC.OrderDescriptionContainer>
       ))}
-      <button onClick={() => dispatch(editProductOrder())}>Editar ordén</button>
+      <button onClick={() => dispatch(editProductOrder())}>Editar orden</button>
     </SC.FinishingDetailCard>
   );
 };

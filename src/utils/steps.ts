@@ -3,27 +3,27 @@ import { Step } from "../context/interfaces";
 export const steps: Step[] = [
   {
     caption: "SELECCIONA TU ORDEN",
-    title: "Prodcutos",
-    description: "Por favor realiza tu ordén",
+    title: "Productos",
+    description: "Por favor realiza tu orden",
     isCompleted: false,
   },
   {
     caption: "REGISTRA TUS DATOS",
     title: "REGISTRA LOS DATOS DE ENTREGA",
-    description: "Datos",
+    description: "",
     isCompleted: false,
   },
   {
-    caption: "FINALIZA TU ORDÉN",
-    title: "Revisa Y finaliza tu ordén",
-    description: "Verifica que todo este en ordén",
+    caption: "FINALIZA TU ORDEN",
+    title: "Revisa Y finaliza tu orden",
+    description: "Verifica que todo este en bien",
     isCompleted: true,
   },
 
   {
-    title: "Gracias por tu ordén!",
+    title: "Gracias por tu orden!",
     description:
-      "Pronto nos contactaremos contigo para terminar la ordén de tu pedido",
+      "Pronto nos contactaremos contigo para terminar la orden de tu pedido",
     isCompleted: true,
   },
 ];

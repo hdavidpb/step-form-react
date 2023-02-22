@@ -14,7 +14,6 @@ export const FooterOptions = () => {
       dispatch(nextStep());
       return;
     }
-    console.log(wappText);
 
     window.open(
       `https://api.whatsapp.com/send?phone=+${

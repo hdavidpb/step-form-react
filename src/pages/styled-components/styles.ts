@@ -76,7 +76,7 @@ export const StepContainer = styled.div`
   gap: 10px;
 
   p {
-    cursor: pointer;
+    cursor: text;
     width: 30px;
     height: 30px;
     border: solid 1px ${theme.neutral.white};

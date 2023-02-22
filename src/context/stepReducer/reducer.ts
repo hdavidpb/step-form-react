@@ -127,6 +127,7 @@ export const stepReducer = (
 
       return {
         ...state,
+
         stepOneProducts: {
           ...state.stepOneProducts,
           products: newSelectedProducts,
