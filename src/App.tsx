@@ -1,6 +1,7 @@
 import { MultiStepForm } from "./pages/MultiStepForm";
 
 function App() {
+  //Application
   return <MultiStepForm />;
 }
 
