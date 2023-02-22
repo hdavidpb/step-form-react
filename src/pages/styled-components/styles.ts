@@ -153,7 +153,7 @@ export const HeaderText = styled.div`
   align-items: flex-start;
   gap: 10px;
 
-  h1 {
+  h3 {
     color: ${theme.primary.marineBlue};
   }
 
@@ -192,6 +192,15 @@ export const FieldContainer = styled.div`
     outline: none;
     border-radius: 8px;
   }
+  textarea {
+    width: 100%;
+    height: 80px;
+    border: solid 1px ${theme.neutral.coolGray};
+    padding: 15px;
+    outline: none;
+    border-radius: 8px;
+    resize: none;
+  }
 `;
 
 export const FooterOptions = styled.footer`
@@ -209,32 +218,32 @@ export const FooterOptions = styled.footer`
 
 export const CardsContainer = styled.div`
   width: 100%;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   gap: 10px;
   padding: 0 5px;
   @media (max-width: 600px) {
-    /* flex-direction: column;
-    flex-wrap: wrap; */
+    grid-template-columns: repeat(2, 1fr);
   }
 `;
 
-interface PlanCardProps {
+interface ProductCardProps {
   isSelected: boolean;
 }
 
-export const PlanCard = styled.div`
+export const ProductCard = styled.div`
   position: relative;
   flex-grow: 1;
-  height: 160px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   border: solid 2px
-    ${({ isSelected }: PlanCardProps) =>
+    ${({ isSelected }: ProductCardProps) =>
       isSelected ? theme.primary.marineBlue : theme.neutral.lightGray};
   border-radius: 10px;
 
@@ -252,7 +261,7 @@ export const Image = styled.img`
   width: 100%;
   height: 70px;
   object-fit: cover;
-  border-radius: 10px 0;
+  border-radius: 10px 10px 0 0;
   @media (max-width: 600px) {
     position: static;
   }
@@ -264,20 +273,60 @@ export const CardDescription = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 2px;
+  gap: 8px;
   padding: 10px;
   h4 {
     color: ${theme.primary.marineBlue};
+    font-weight: 600;
+    font-size: 14px;
   }
 
   span {
+    font-weight: 900;
     font-size: 14px;
     color: ${theme.neutral.coolGray};
     //nothing
   }
 `;
 
-export const CardFooter = styled.div``;
+export const CardFooter = styled.div`
+  margin: auto;
+  width: 70%;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+
+  background-color: ${theme.neutral.magnolia};
+  margin-bottom: 10px;
+
+  span {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 900;
+    text-orientation: sideways;
+    text-align: center;
+    cursor: text;
+  }
+
+  button {
+    width: 30px;
+    border: none;
+    outline: none;
+    font-size: 1.1rem;
+    background-color: transparent;
+    cursor: pointer;
+    :first-child {
+      border-radius: 10px 0 0 10px;
+      border-right: solid 1px ${theme.neutral.coolGray};
+    }
+    :last-child {
+      border-radius: 0 10px 10px 0;
+      border-left: solid 1px ${theme.neutral.coolGray};
+    }
+  }
+`;
 
 export const CheckContainer = styled.div`
   width: 100%;
@@ -422,6 +471,7 @@ export const AddOnsDetailsContainer = styled(FinishinUpContainer)`
 
 export const FinishingDetailsContainer = styled.div`
   width: 100%;
+  max-height: 13rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -429,15 +479,28 @@ export const FinishingDetailsContainer = styled.div`
   padding: 1rem;
   background-color: ${theme.neutral.magnolia};
   border-radius: 10px;
+  overflow-y: auto;
 `;
 
 export const FinishingDetailCard = styled.div`
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   padding-bottom: 20px;
+  gap: 10px;
   h4 {
+    color: ${theme.primary.marineBlue};
+  }
+
+  button {
+    margin-top: 1rem;
+    border: none;
+    outline: none;
+    text-decoration: underline;
+    font-size: 1rem;
+    background-color: transparent;
     color: ${theme.primary.marineBlue};
   }
 `;
@@ -456,25 +519,19 @@ export const AddOnDetailCard = styled(FinishingDetailCard)`
   padding-bottom: 0;
 `;
 
-export const PlantTypeContainer = styled.div`
-  flex: 1;
+export const OrderDescriptionContainer = styled.div`
+  width: 100%;
   display: flex;
-  flex-direction: column;
   justify-content: flex-start;
-  align-items: flex-start;
-  gap: 5px;
+  align-items: center;
+  gap: 10px;
 
-  button {
-    border: none;
-    background-color: transparent;
-    outline: none;
-    text-decoration: underline;
-    cursor: pointer;
-    transition: all 0.4s;
+  h3 {
     color: ${theme.primary.marineBlue};
-    :hover {
-      color: ${theme.primary.pastelBlue};
-    }
+  }
+  p {
+    flex: 1;
+    color: ${theme.primary.marineBlue};
   }
 `;
 
@@ -487,10 +544,12 @@ export const TotalContainer = styled.div`
   span {
     font-size: 15px;
     color: ${theme.neutral.coolGray};
+    font-size: 1.6rem;
   }
 
   h3 {
     color: ${theme.primary.purplishBlue};
+    font-size: 1.6rem;
   }
 `;
 

@@ -17,7 +17,7 @@ const SideSteps = ({ index, steps }: Props) => {
             <SC.StepContainer isStep={idx === index} key={caption}>
               <p>{idx + 1}</p>
               <SC.StepDetialContainer>
-                <span>{`STEP ${idx + 1}`}</span>
+                <span>{`PASO ${idx + 1}`}</span>
                 <h5>{caption}</h5>
               </SC.StepDetialContainer>
             </SC.StepContainer>

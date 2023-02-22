@@ -5,7 +5,7 @@ export const TotalFishinUp = () => {
   const { finishinTotal } = useGetDetailsInfo();
   return (
     <SC.TotalContainer>
-      <span>{finishinTotal.planType}</span>
+      <span>TOTAL</span>
       <h3>{finishinTotal.total}</h3>
     </SC.TotalContainer>
   );

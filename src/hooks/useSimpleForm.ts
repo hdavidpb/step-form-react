@@ -9,7 +9,11 @@ import {
 const useSimpleForm = <T>(initialState: T) => {
   const { dispatch, state } = useContext(stepsContext);
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChange = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     dispatch(changeStepOneValue(e.target.name, e.target.value));
   };
 
@@ -27,7 +31,7 @@ const useSimpleForm = <T>(initialState: T) => {
     const isValid =
       isValidCount === -Object.values(state.stepOneformValues).length;
 
-    dispatch(setValidStep(isValid, 0));
+    dispatch(setValidStep(isValid, 1));
   };
 
   useEffect(() => {

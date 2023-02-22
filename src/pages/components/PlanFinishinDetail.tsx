@@ -1,31 +1,25 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 
-import { PlanType } from "../../context/interfaces";
-import { changePlanType } from "../../context/stepReducer/actions";
+import { editProductOrder } from "../../context/stepReducer/actions";
 import { stepsContext } from "../../context/StepsProvider";
+import { formatPrice } from "../../utils/formatPrice";
 import * as SC from "../styled-components/styles";
 
 export const PlanFinishinDetail = () => {
   const { state, dispatch } = useContext(stepsContext);
 
-  const { plansSelected, planType } = state;
+  const { productSelected } = state;
 
   return (
     <SC.FinishingDetailCard>
-      {plansSelected.map((plan) => (
-        <React.Fragment key={plan.title}>
-          <SC.PlantTypeContainer>
-            <h4>{`${plan.title} (${planType})`}</h4>
-            <button onClick={() => dispatch(changePlanType(1))}>Change</button>
-          </SC.PlantTypeContainer>
-
-          <h4>{`$${
-            planType === PlanType.monthly
-              ? `${plan.monthlyPlan}/mo`
-              : `${plan.yearlyPlan}/yr`
-          }`}</h4>
-        </React.Fragment>
+      {productSelected.map((plan) => (
+        <SC.OrderDescriptionContainer key={plan.nombre}>
+          <h3>{plan.count}</h3>
+          <p>{plan.nombre}</p>
+          <h3>{formatPrice(plan.precio * plan.count)}</h3>
+        </SC.OrderDescriptionContainer>
       ))}
+      <button onClick={() => dispatch(editProductOrder())}>Editar ordén</button>
     </SC.FinishingDetailCard>
   );
 };

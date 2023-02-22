@@ -1,53 +1,42 @@
 import { useState, useEffect, useContext } from "react";
+import { generateWappText } from "../context/stepReducer/actions";
 import { stepsContext } from "../context/StepsProvider";
-import { PlanType } from "../context/interfaces";
+import { formatPrice } from "../utils/formatPrice";
 
 const useGetDetailsInfo = () => {
-  const { state } = useContext(stepsContext);
-  const { addOnsSelected, plansSelected, planType } = state;
+  const { state, dispatch } = useContext(stepsContext);
+  const { productSelected, stepOneformValues } = state;
   const [finishinTotal, setFinishingTotal] = useState({
-    planType: "",
     total: "",
   });
 
   const getTotalDetail = () => {
-    if (planType === PlanType.monthly) {
-      const totalPlan = plansSelected.reduce(
-        (acc, plan) => acc + plan.monthlyPlan,
-        0
-      );
-      const totalAddOns = addOnsSelected.reduce(
-        (acc, addOn) => acc + addOn.monthlyPlan,
-        0
-      );
-
-      const total = totalPlan + totalAddOns;
-
-      setFinishingTotal({
-        planType: "Total (per month)",
-        total: `+$${total}/mo`,
-      });
-      return;
-    }
-    const totalPlan = plansSelected.reduce(
-      (acc, plan) => acc + plan.yearlyPlan,
-      0
-    );
-    const totalAddOns = addOnsSelected.reduce(
-      (acc, addOn) => acc + addOn.yearlyPlan,
+    const totalOrder = productSelected.reduce(
+      (acc, plan) => acc + plan.precio * plan.count,
       0
     );
 
-    const total = totalPlan + totalAddOns;
     setFinishingTotal({
-      planType: "Total (per year)",
-      total: `+$${total}/yr`,
+      total: formatPrice(totalOrder),
     });
+  };
+
+  const getOrderText = () => {
+    const { address, description, name } = stepOneformValues;
+    let text = "";
+    const productsText = productSelected.reduce((text, prod) => {
+      return (text += `${prod.count} ${prod.nombre} \n`);
+    }, "\n");
+
+    text += `Buenas, quisiera ordenar por favor:\n${productsText} \n Para ${address}, ${description}.\n Mi nombre es: ${name}`;
+
+    dispatch(generateWappText(text));
   };
 
   useEffect(() => {
     getTotalDetail();
-  }, [addOnsSelected, plansSelected, planType]);
+    getOrderText();
+  }, [productSelected]);
 
   return {
     finishinTotal,

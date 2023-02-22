@@ -1,14 +1,13 @@
-import { PlanType } from "../interfaces";
 import {
-  CHANGE_PLAN_TYPE,
+  CHANGE_PRODUCTS_ORDER,
   CHANGE_STEP_ONE_FORM_VALUE,
-  CHANGE_STEP_TWO_PLAN_TYPE,
+  GENERATE_WAPP_TEXT,
   GO_BACK,
+  INCREASE_BY,
   IS_INVALIDVALID,
   IS_VALID,
   NEXT_STEP,
-  SELECT_OR_UNSELECT_ADD_ON,
-  SELECT_OR_UNSELECT_PLAN,
+  SELECT_PRODUCT,
 } from "./types";
 
 export const nextStep = () => ({ type: NEXT_STEP, payload: 1 });
@@ -37,22 +36,27 @@ export const setValidStep = (isValid: boolean, index: number) => {
   return isInValid(index);
 };
 
-export const changeStepTwoPlanType = (planType: PlanType) => ({
-  type: CHANGE_STEP_TWO_PLAN_TYPE,
-  payload: planType,
+export const selectOrUnselectProduct = (productTitle: string) => ({
+  type: SELECT_PRODUCT,
+  payload: productTitle,
 });
 
-export const selectOrUnselectPlan = (planTitle: string) => ({
-  type: SELECT_OR_UNSELECT_PLAN,
-  payload: planTitle,
+export const increaseBy = (productName: string, increaseNumber: number) => {
+  return {
+    type: INCREASE_BY,
+    payload: {
+      increaseNumber,
+      productName,
+    },
+  };
+};
+
+export const editProductOrder = () => ({
+  type: CHANGE_PRODUCTS_ORDER,
+  payload: 0,
 });
 
-export const selectOrUnselectAddOn = (addOnTitle: string) => ({
-  type: SELECT_OR_UNSELECT_ADD_ON,
-  payload: addOnTitle,
-});
-
-export const changePlanType = (index: number) => ({
-  type: CHANGE_PLAN_TYPE,
-  payload: 1,
+export const generateWappText = (text: string) => ({
+  type: GENERATE_WAPP_TEXT,
+  payload: text,
 });

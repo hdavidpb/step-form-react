@@ -7,9 +7,8 @@ import SideSteps from "./components/SideSteps";
 import {
   FooterOptions,
   StepOneForm,
-  StepTreeForm,
-  StepTwoChecks,
-  StepFourForm,
+  StepOneCheckProducts,
+  FinishingOrder,
   ThankYouStep,
 } from "./components";
 
@@ -28,13 +27,12 @@ export const MultiStepForm = () => {
           ) : (
             <>
               <SC.HeaderText>
-                <h1>{steps[index].title}</h1>
+                <h3>{steps[index].title}</h3>
                 <p>{steps[index].description}</p>
               </SC.HeaderText>
-              {index === 0 && <StepTwoChecks />}
+              {index === 0 && <StepOneCheckProducts />}
               {index === 1 && <StepOneForm />}
-              {index === 2 && <StepTreeForm />}
-              {index === 3 && <StepFourForm />}
+              {index === 2 && <FinishingOrder />}
               <FooterOptions />
             </>
           )}

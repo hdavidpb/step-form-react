@@ -1,17 +1,12 @@
-import {
-  AddOnFinishingDetail,
-  PlanFinishinDetail,
-  TotalFishinUp,
-} from "./index";
+import { PlanFinishinDetail, TotalFishinUp } from "./index";
 import * as SC from "../styled-components/styles";
 
-export const StepFourForm = () => {
+export const FinishingOrder = () => {
   return (
     <SC.FieldsContainer>
       <SC.FinishinUpContainer>
         <SC.FinishingDetailsContainer>
           <PlanFinishinDetail />
-          <AddOnFinishingDetail />
         </SC.FinishingDetailsContainer>
         <TotalFishinUp />
       </SC.FinishinUpContainer>

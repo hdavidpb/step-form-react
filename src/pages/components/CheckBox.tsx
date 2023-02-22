@@ -12,7 +12,7 @@ const CheckBox = () => {
     dispatch(changeStepTwoPlanType(nwePlanType));
   };
   const { state, dispatch } = useContext(stepsContext);
-  const { stepTwoFormValues, planType } = state;
+  const { stepOneProducts, planType } = state;
   return (
     <SC.CheckContainer>
       <h5

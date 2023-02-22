@@ -7,7 +7,18 @@ import * as SC from "../styled-components/styles";
 
 export const FooterOptions = () => {
   const { state, dispatch } = useContext(stepsContext);
-  const { steps, index } = state;
+  const { steps, index, wappText } = state;
+
+  const handleClick = () => {
+    if (index < steps.length - 2) {
+      dispatch(nextStep());
+      return;
+    }
+
+    window.open(
+      `https://api.whatsapp.com/send?phone=+3023842288&text=${wappText}`
+    );
+  };
 
   return (
     <SC.FooterOptions>
@@ -18,10 +29,7 @@ export const FooterOptions = () => {
         Go Back
       </span>
 
-      <Button
-        disabled={!steps[index].isCompleted}
-        onClick={() => dispatch(nextStep())}
-      >
+      <Button disabled={!steps[index].isCompleted} onClick={handleClick}>
         {index < steps.length - 2 ? "Next Step" : "Confirm"}
       </Button>
     </SC.FooterOptions>

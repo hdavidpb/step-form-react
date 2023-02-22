@@ -4,29 +4,29 @@ export interface IInitialState {
   steps: Step[];
   index: number;
   stepOneformValues: StepOneForm;
-  planType: PlanType;
-  stepTwoFormValues: {
-    plans: Plan[];
+
+  stepOneProducts: {
+    products: Product[];
   };
 
-  stepTreeFormValues: {
-    addOns: AddOns[];
-  };
-  plansSelected: Plan[];
+  productSelected: Product[];
   addOnsSelected: AddOns[];
+  wappText: string;
 }
 
 export interface StepOneForm {
   name: string;
-  email: string;
-  phoneNumber: string;
+  address: string;
+  description: string;
 }
 
-export interface Plan {
-  title: string;
-  isSelected: boolean;
-  monthlyPlan: number;
-  yearlyPlan: number;
+export interface Product {
+  nombre: string;
+  tipo: string;
+  precio: number;
+  imagen: string;
+  isSelected?: boolean;
+  count: number;
 }
 
 export enum PlanType {

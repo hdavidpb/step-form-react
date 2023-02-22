@@ -1,16 +1,18 @@
-import { Action, IInitialState, Step, PlanType } from "../interfaces";
-import { StepTreeForm } from "../../pages/components/StepTreeForm";
+import { Action, IInitialState, Step } from "../interfaces";
 
 import {
-  CHANGE_PLAN_TYPE,
+  CHANGE_PRODUCTS_ORDER,
+  GENERATE_WAPP_TEXT,
+  INCREASE_BY,
+} from "./types";
+
+import {
   CHANGE_STEP_ONE_FORM_VALUE,
-  CHANGE_STEP_TWO_PLAN_TYPE,
   GO_BACK,
   IS_INVALIDVALID,
   IS_VALID,
   NEXT_STEP,
-  SELECT_OR_UNSELECT_ADD_ON,
-  SELECT_OR_UNSELECT_PLAN,
+  SELECT_PRODUCT,
 } from "./types";
 
 const steps: Step[] = [
@@ -18,27 +20,21 @@ const steps: Step[] = [
     caption: "SELECCIONA TU ORDEN",
     title: "Prodcutos",
     description: "Por favor realiza tu ordén",
-    isCompleted: false,
-  },
-  {
-    caption: "SELECT PLAN",
-    title: "Select your plan",
-    description: "You have the option of monthly or yearly billing ",
     isCompleted: true,
   },
   {
-    caption: "ADD-ONS",
-    title: "Pick add-ons",
-    description: "Add-ons help enhance your gaming experience",
+    caption: "REGISTRA TUS DATOS",
+    title: "REGISTRA LOS DATOS DE ENTREGA",
+    description: "Datos",
+    isCompleted: true,
+  },
+  {
+    caption: "FINALIZA TU ORDÉN",
+    title: "Revisa Y finaliza tu ordén",
+    description: "Revisa que todo este bien",
     isCompleted: true,
   },
 
-  {
-    caption: "SUMMARY",
-    title: "Finishing up",
-    description: "Double-check everything looks OK before confirming.",
-    isCompleted: true,
-  },
   {
     title: "Thank you!",
     description:
@@ -51,60 +47,45 @@ export const initialState: IInitialState = {
   index: 0,
   stepOneformValues: {
     name: "",
-    email: "",
-    phoneNumber: "",
+    address: "",
+    description: "",
   },
 
-  stepTwoFormValues: {
-    plans: [
+  stepOneProducts: {
+    products: [
       {
-        title: "Arcade",
+        nombre: "Salchiabsurda",
+        imagen:
+          "https://www.pequerecetas.com/wp-content/uploads/2013/07/hamburguesas-caseras-receta.jpg",
+        precio: 23000,
+        tipo: "Salchipapa",
         isSelected: false,
-        monthlyPlan: 9,
-        yearlyPlan: 90,
+        count: 0,
       },
       {
-        title: "Advanced",
+        nombre: "Hamburguesa gemelas",
+        imagen:
+          "https://www.pequerecetas.com/wp-content/uploads/2013/07/hamburguesas-caseras-receta.jpg",
+        precio: 23000,
+        tipo: "Hamburguesa",
         isSelected: false,
-        monthlyPlan: 12,
-        yearlyPlan: 120,
+        count: 0,
       },
       {
-        title: "Pro",
+        nombre: "Hamburguesa sencilla",
+        imagen:
+          "https://www.pequerecetas.com/wp-content/uploads/2013/07/hamburguesas-caseras-receta.jpg",
+        precio: 2000,
+        tipo: "Hamburguesa",
         isSelected: false,
-        monthlyPlan: 15,
-        yearlyPlan: 150,
+        count: 0,
       },
     ],
   },
-  planType: PlanType.monthly,
-  stepTreeFormValues: {
-    addOns: [
-      {
-        title: "Online service",
-        description: "Access to multiplayer games",
-        isSelected: true,
-        monthlyPlan: 1,
-        yearlyPlan: 10,
-      },
-      {
-        title: "Larger store",
-        description: "Extra 1TB of cloud save",
-        isSelected: false,
-        monthlyPlan: 2,
-        yearlyPlan: 20,
-      },
-      {
-        title: "Customizable profile",
-        description: "Custom theme on your profile",
-        isSelected: false,
-        monthlyPlan: 2,
-        yearlyPlan: 20,
-      },
-    ],
-  },
+
   addOnsSelected: [],
-  plansSelected: [],
+  productSelected: [],
+  wappText: "",
 };
 
 export const stepReducer = (
@@ -123,6 +104,7 @@ export const stepReducer = (
     case GO_BACK:
       return {
         ...state,
+
         index: state.index > 0 ? state.index + action.payload : 0,
       };
     case CHANGE_STEP_ONE_FORM_VALUE:
@@ -148,38 +130,50 @@ export const stepReducer = (
       });
 
       return { ...state, steps: stepsWithFalse };
-    case CHANGE_STEP_TWO_PLAN_TYPE:
-      return {
-        ...state,
-        planType: action.payload,
-      };
-    case SELECT_OR_UNSELECT_PLAN:
-      const newPlans = state.stepTwoFormValues.plans.map((plan) =>
-        plan.title === action.payload
-          ? { ...plan, isSelected: !plan.isSelected }
-          : { ...plan }
+
+    case SELECT_PRODUCT:
+      const newProducts = state.stepOneProducts.products.map((product) =>
+        product.nombre === action.payload
+          ? { ...product, isSelected: true }
+          : { ...product }
       );
-      const selectedPlans = newPlans.filter((plan) => plan.isSelected);
+      const selectedPlans = newProducts.filter((product) => product.isSelected);
 
       return {
         ...state,
-        stepTwoFormValues: { ...state.stepTwoFormValues, plans: newPlans },
-        plansSelected: selectedPlans,
+        stepOneProducts: {
+          ...state.stepOneProducts,
+          products: newProducts,
+        },
+        productSelected: selectedPlans,
       };
-    case SELECT_OR_UNSELECT_ADD_ON:
-      const newAddOns = state.stepTreeFormValues.addOns.map((addOn) =>
-        addOn.title === action.payload
-          ? { ...addOn, isSelected: !addOn.isSelected }
-          : addOn
-      );
-      const selectedAddOns = newAddOns.filter((addOn) => addOn.isSelected);
+
+    case INCREASE_BY:
+      const newProductsby = state.stepOneProducts.products.map((product) => {
+        if (product.nombre === action.payload.productName) {
+          return {
+            ...product,
+            count: product.count + action.payload.increaseNumber,
+          };
+        }
+        return product;
+      });
+
       return {
         ...state,
-        stepTreeFormValues: { addOns: newAddOns },
-        addOnsSelected: selectedAddOns,
+        stepOneProducts: {
+          ...state.stepOneProducts,
+          products: newProductsby,
+        },
       };
-    case CHANGE_PLAN_TYPE:
+    case CHANGE_PRODUCTS_ORDER:
       return { ...state, index: action.payload };
+    case GENERATE_WAPP_TEXT:
+      return {
+        ...state,
+        wappText: action.payload,
+      };
+
     default:
       return { ...state };
   }

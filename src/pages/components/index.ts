@@ -1,12 +1,10 @@
 export { ThankYouStep } from "./ThankYouStep";
 
-export { AddOnCard } from "./AddOnCard";
-export { AddOnFinishingDetail } from "./AddOnFinishingDetail";
 export { FooterOptions } from "./FooterOptions";
-export { PlanCard } from "./PlanCard";
+export { ProductCard } from "./ProductCard";
 export { PlanFinishinDetail } from "./PlanFinishinDetail";
-export { StepFourForm } from "./StepFourForm";
+export { FinishingOrder } from "./FinishingOrder";
 export { StepOneForm } from "./StepOneForm";
-export { StepTreeForm } from "./StepTreeForm";
-export { StepTwoChecks } from "./StepTwoChecks";
+
+export { StepOneCheckProducts } from "./StepOneCheckProducts";
 export { TotalFishinUp } from "./TotalFishinUp";

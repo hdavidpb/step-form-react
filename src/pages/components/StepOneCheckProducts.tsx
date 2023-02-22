@@ -4,17 +4,17 @@ import { stepsContext } from "../../context/StepsProvider";
 import * as SC from "../styled-components/styles";
 
 import CheckBox from "./CheckBox";
-import { PlanCard } from "./index";
+import { ProductCard } from "./index";
 
-export const StepTwoChecks = () => {
+export const StepOneCheckProducts = () => {
   const { state } = useContext(stepsContext);
-  const { stepTwoFormValues } = state;
+  const { stepOneProducts } = state;
 
   return (
     <SC.FieldsContainer>
       <SC.CardsContainer>
-        {stepTwoFormValues.plans.map((plan) => (
-          <PlanCard plan={plan} key={plan.title} />
+        {stepOneProducts.products.map((product) => (
+          <ProductCard product={product} key={product.nombre} />
         ))}
       </SC.CardsContainer>
     </SC.FieldsContainer>
