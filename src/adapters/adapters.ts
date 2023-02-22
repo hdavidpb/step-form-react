@@ -1,8 +1,12 @@
-import { ContentData, IProduct } from "../interfaces/interfaces";
+import { Product } from "../context/interfaces";
+import { ContentData } from "../interfaces/interfaces";
 
-export const createProductsAdapter = (data: ContentData): IProduct[] => {
+export const createProductsAdapter = (data: ContentData): Product[] => {
   const [headers, ...products] = data.content;
-  let product: { [key: string]: any } = {};
+  let product: { [key: string]: any } = {
+    count: 0,
+    isSelected: false,
+  };
   let productList = [];
 
   for (let i = 0; i < products.length; i++) {
@@ -10,8 +14,8 @@ export const createProductsAdapter = (data: ContentData): IProduct[] => {
       product[headers[prod]] = products[i][prod];
     }
     productList.push(product);
-    product = {};
+    product = { count: 0, isSelected: false };
   }
 
-  return productList as IProduct[];
+  return productList as Product[];
 };

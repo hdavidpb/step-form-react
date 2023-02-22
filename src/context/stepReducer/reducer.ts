@@ -4,13 +4,14 @@ import { Action, IInitialState, Step } from "../interfaces";
 import {
   CHANGE_PRODUCTS_ORDER,
   GENERATE_WAPP_TEXT,
+  GET_PRODUCTS_DATA,
   INCREASE_BY,
 } from "./types";
 
 import {
   CHANGE_STEP_ONE_FORM_VALUE,
   GO_BACK,
-  IS_INVALIDVALID,
+  IS_INVALID,
   IS_VALID,
   NEXT_STEP,
   SELECT_PRODUCT,
@@ -26,35 +27,7 @@ export const initialState: IInitialState = {
   },
 
   stepOneProducts: {
-    products: [
-      {
-        nombre: "Salchiabsurda",
-        imagen:
-          "https://www.pequerecetas.com/wp-content/uploads/2013/07/hamburguesas-caseras-receta.jpg",
-        precio: 23000,
-        tipo: "Salchipapa",
-        isSelected: false,
-        count: 0,
-      },
-      {
-        nombre: "Hamburguesa gemelas",
-        imagen:
-          "https://www.pequerecetas.com/wp-content/uploads/2013/07/hamburguesas-caseras-receta.jpg",
-        precio: 23000,
-        tipo: "Hamburguesa",
-        isSelected: false,
-        count: 0,
-      },
-      {
-        nombre: "Hamburguesa sencilla",
-        imagen:
-          "https://www.pequerecetas.com/wp-content/uploads/2013/07/hamburguesas-caseras-receta.jpg",
-        precio: 2000,
-        tipo: "Hamburguesa",
-        isSelected: false,
-        count: 0,
-      },
-    ],
+    products: [],
   },
 
   addOnsSelected: [],
@@ -67,6 +40,12 @@ export const stepReducer = (
   action: Action
 ): IInitialState => {
   switch (action.type) {
+    case GET_PRODUCTS_DATA:
+      return {
+        ...state,
+        stepOneProducts: { ...state.stepOneProducts, products: action.payload },
+      };
+
     case NEXT_STEP:
       return {
         ...state,
@@ -97,7 +76,8 @@ export const stepReducer = (
       });
 
       return { ...state, steps: newSteps };
-    case IS_INVALIDVALID:
+
+    case IS_INVALID:
       const stepsWithFalse = state.steps.map((step, idx) => {
         if (idx === action.payload) return { ...step, isCompleted: false };
         return step;

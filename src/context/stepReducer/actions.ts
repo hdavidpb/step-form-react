@@ -1,14 +1,18 @@
+import { ContentData } from "../../interfaces/interfaces";
+import { createProductsAdapter } from "../../adapters/adapters";
 import {
   CHANGE_PRODUCTS_ORDER,
   CHANGE_STEP_ONE_FORM_VALUE,
   GENERATE_WAPP_TEXT,
+  GET_PRODUCTS_DATA,
   GO_BACK,
   INCREASE_BY,
-  IS_INVALIDVALID,
+  IS_INVALID,
   IS_VALID,
   NEXT_STEP,
   SELECT_PRODUCT,
 } from "./types";
+import { Product } from "../interfaces";
 
 export const nextStep = () => ({ type: NEXT_STEP, payload: 1 });
 export const goBack = () => ({ type: GO_BACK, payload: -1 });
@@ -27,7 +31,7 @@ export const isValidStep = (index: number) => ({
 });
 
 export const isInValid = (index: number) => ({
-  type: IS_INVALIDVALID,
+  type: IS_INVALID,
   payload: index,
 });
 
@@ -59,4 +63,9 @@ export const editProductOrder = () => ({
 export const generateWappText = (text: string) => ({
   type: GENERATE_WAPP_TEXT,
   payload: text,
+});
+
+export const getProductsData = (data: Product[]) => ({
+  type: GET_PRODUCTS_DATA,
+  payload: data,
 });
