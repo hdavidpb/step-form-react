@@ -8,7 +8,7 @@ export const StepOneForm = () => {
   return (
     <SC.FieldsContainer>
       <SC.FieldContainer>
-        <label>Metodo de pago</label>
+        <label>Método de pago</label>
         <select
           name="payMethod"
           placeholder="ej: Tranferencia Nequi"
@@ -16,7 +16,7 @@ export const StepOneForm = () => {
           onChange={handleSelectChange}
         >
           <option disabled value="">
-            Selecciona un metodo de pago
+            Selecciona un método de pago
           </option>
           {paymentMethods.map(({ label, value }) => (
             <option value={value} key={label}>
