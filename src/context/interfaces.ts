@@ -15,7 +15,7 @@ export interface IInitialState {
 }
 
 export interface StepOneForm {
-  name: string;
+  payMethod: string;
   address: string;
   description: string;
 }

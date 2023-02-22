@@ -22,13 +22,13 @@ const useGetDetailsInfo = () => {
   };
 
   const getOrderText = () => {
-    const { address, description, name } = stepOneformValues;
+    const { address, description, payMethod } = stepOneformValues;
     let text = "";
     const productsText = productSelected.reduce((text, prod) => {
       return (text += `${prod.count} ${prod.nombre} \n`);
     }, "\n");
 
-    text += `Buenas, quisiera ordenar por favor:\n${productsText} \n Para ${address}, ${description}.\n Mi nombre es: ${name}`;
+    text += `Buenas, quisiera ordenar por favor:\n${productsText}\n Para ${address}, ${description}.\n Metodo de pago: ${payMethod}`;
 
     dispatch(generateWappText(text));
   };

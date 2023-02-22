@@ -1,8 +1,8 @@
 import * as SC from "../styled-components/styles";
 import useSimpleForm from "../../hooks/useSimpleForm";
 export const StepOneForm = () => {
-  const { name, address, description, onChange } = useSimpleForm({
-    name: "",
+  const { payMethod, address, description, onChange } = useSimpleForm({
+    payMethod: "",
     address: "",
     description: "",
   });
@@ -10,12 +10,12 @@ export const StepOneForm = () => {
   return (
     <SC.FieldsContainer>
       <SC.FieldContainer>
-        <label>Nombre</label>
+        <label>Metodo de pago</label>
         <input
-          name="name"
+          name="payMethod"
           type="text"
-          placeholder="ej: Jhon Doe"
-          value={name}
+          placeholder="ej: Tranferencia Nequi"
+          value={payMethod}
           onChange={onChange}
         />
       </SC.FieldContainer>

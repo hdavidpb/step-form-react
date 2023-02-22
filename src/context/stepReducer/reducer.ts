@@ -46,7 +46,7 @@ export const initialState: IInitialState = {
   steps,
   index: 0,
   stepOneformValues: {
-    name: "",
+    payMethod: "",
     address: "",
     description: "",
   },

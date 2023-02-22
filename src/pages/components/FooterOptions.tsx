@@ -14,9 +14,12 @@ export const FooterOptions = () => {
       dispatch(nextStep());
       return;
     }
+    console.log(wappText);
 
     window.open(
-      `https://api.whatsapp.com/send?phone=+3023842288&text=${wappText}`
+      `https://api.whatsapp.com/send?phone=+3023842288&text=${encodeURIComponent(
+        wappText
+      )}`
     );
   };
 
