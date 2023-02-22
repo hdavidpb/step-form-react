@@ -1,23 +1,29 @@
 import * as SC from "../styled-components/styles";
 import useSimpleForm from "../../hooks/useSimpleForm";
+import { paymentMethods } from "../../utils/steps";
 export const StepOneForm = () => {
-  const { payMethod, address, description, onChange } = useSimpleForm({
-    payMethod: "",
-    address: "",
-    description: "",
-  });
+  const { payMethod, address, description, onChange, handleSelectChange } =
+    useSimpleForm();
 
   return (
     <SC.FieldsContainer>
       <SC.FieldContainer>
         <label>Metodo de pago</label>
-        <input
+        <select
           name="payMethod"
-          type="text"
           placeholder="ej: Tranferencia Nequi"
           value={payMethod}
-          onChange={onChange}
-        />
+          onChange={handleSelectChange}
+        >
+          <option disabled value="">
+            Selecciona un metodo de pago
+          </option>
+          {paymentMethods.map(({ label, value }) => (
+            <option value={value} key={label}>
+              {label}
+            </option>
+          ))}
+        </select>
       </SC.FieldContainer>
       <SC.FieldContainer>
         <label>Dirección</label>

@@ -1,3 +1,4 @@
+import { steps } from "../../utils/steps";
 import { Action, IInitialState, Step } from "../interfaces";
 
 import {
@@ -15,33 +16,6 @@ import {
   SELECT_PRODUCT,
 } from "./types";
 
-const steps: Step[] = [
-  {
-    caption: "SELECCIONA TU ORDEN",
-    title: "Prodcutos",
-    description: "Por favor realiza tu ordén",
-    isCompleted: true,
-  },
-  {
-    caption: "REGISTRA TUS DATOS",
-    title: "REGISTRA LOS DATOS DE ENTREGA",
-    description: "Datos",
-    isCompleted: true,
-  },
-  {
-    caption: "FINALIZA TU ORDÉN",
-    title: "Revisa Y finaliza tu ordén",
-    description: "Revisa que todo este bien",
-    isCompleted: true,
-  },
-
-  {
-    title: "Thank you!",
-    description:
-      "Thanks for confirming your subscription! We hope you have fun using your subscription our platform. If you ever need support, please feel free to email us atsupport@loremgaming.com.",
-    isCompleted: true,
-  },
-];
 export const initialState: IInitialState = {
   steps,
   index: 0,

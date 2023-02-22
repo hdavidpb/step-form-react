@@ -6,7 +6,7 @@ import {
   setValidStep,
 } from "../context/stepReducer/actions";
 
-const useSimpleForm = <T>(initialState: T) => {
+const useSimpleForm = () => {
   const { dispatch, state } = useContext(stepsContext);
 
   const onChange = (
@@ -15,6 +15,10 @@ const useSimpleForm = <T>(initialState: T) => {
       | React.ChangeEvent<HTMLTextAreaElement>
   ) => {
     dispatch(changeStepOneValue(e.target.name, e.target.value));
+  };
+
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    dispatch(changeStepOneValue("payMethod", e.target.value));
   };
 
   const isValidForm = () => {
@@ -38,7 +42,7 @@ const useSimpleForm = <T>(initialState: T) => {
     isValidForm();
   }, [state.stepOneformValues]);
 
-  return { ...state.stepOneformValues, onChange };
+  return { ...state.stepOneformValues, onChange, handleSelectChange };
 };
 
 export default useSimpleForm;

@@ -185,7 +185,8 @@ export const FieldContainer = styled.div`
     font-size: 14px;
     color: ${theme.primary.marineBlue};
   }
-  input {
+  input,
+  select {
     width: 100%;
     border: solid 1px ${theme.neutral.coolGray};
     padding: 15px;
@@ -251,8 +252,6 @@ export const ProductCard = styled.div`
   transition: all 0.4s;
 
   @media (max-width: 600px) {
-    height: auto;
-
     gap: 10px;
   }
 `;

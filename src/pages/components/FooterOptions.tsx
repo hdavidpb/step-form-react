@@ -17,9 +17,9 @@ export const FooterOptions = () => {
     console.log(wappText);
 
     window.open(
-      `https://api.whatsapp.com/send?phone=+3023842288&text=${encodeURIComponent(
-        wappText
-      )}`
+      `https://api.whatsapp.com/send?phone=+${
+        import.meta.env.VITE_WAPP_NUMBER
+      }&text=${encodeURIComponent(wappText)}`
     );
   };
 
@@ -33,7 +33,7 @@ export const FooterOptions = () => {
       </span>
 
       <Button disabled={!steps[index].isCompleted} onClick={handleClick}>
-        {index < steps.length - 2 ? "Next Step" : "Confirm"}
+        {index < steps.length - 2 ? "Siguiente" : "Ordenar"}
       </Button>
     </SC.FooterOptions>
   );
