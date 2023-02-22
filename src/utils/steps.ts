@@ -16,7 +16,7 @@ export const steps: Step[] = [
   {
     caption: "FINALIZA TU ORDEN",
     title: "Revisa Y finaliza tu orden",
-    description: "Verifica que todo este en bien",
+    description: "Verifica que todo este bien",
     isCompleted: true,
   },
 
