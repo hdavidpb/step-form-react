@@ -224,9 +224,8 @@ export const CardsContainer = styled.div`
   grid-template-columns: repeat(3, 1fr);
   justify-content: center;
   align-items: center;
-  /* flex-wrap: wrap; */
   gap: 10px;
-  padding: 0 5px;
+  padding: 10px 5px;
   @media (max-width: 600px) {
     grid-template-columns: repeat(2, 1fr);
   }
