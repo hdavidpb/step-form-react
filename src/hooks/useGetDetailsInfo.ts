@@ -28,7 +28,7 @@ const useGetDetailsInfo = () => {
       return (text += `${prod.count} ${prod.nombre} \n`);
     }, "\n");
 
-    text += `Buenas, quisiera ordenar por favor:\n${productsText}\n Para ${address}, ${description}.\n Metodo de pago: ${payMethod}`;
+    text += `Buenas, quisiera ordenar por favor:\n${productsText}\n Para ${address}, ${description}.\n\n Metodo de pago: ${payMethod}`;
 
     dispatch(generateWappText(text));
   };
